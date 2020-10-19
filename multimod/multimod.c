@@ -28,10 +28,9 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t ans = 0;
   int p=0,i,j;
   while(a>1){
-    if(a&1){
+    if(a&1)
       ans+=(b<<p);
-      p++;
-    }
+    p++;
     a>>=1;
   }
   ans+=(b<<p);
