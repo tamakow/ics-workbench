@@ -1,7 +1,5 @@
 #include <stdint.h>
 
-
-
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   static uint64_t l[64]={};
   int p=0,i,j;
@@ -18,6 +16,6 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       ans=ans+(1<<i);
     }
   }
-  while(ans>=m) ans-=m;
+  ans = ans & (m-1);
   return ans;
 }
