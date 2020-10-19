@@ -9,6 +9,7 @@ static inline uint64_t my_mod(uint64_t a,uint64_t m){
       if(data[i]<=a) continue;
       if(i!=0)
       a-=data[i-1];
+      else a-=m;
       break;
     }
   }
@@ -36,7 +37,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   while(a>1){
     if(a&1)
       for(i=0;i<b;++i)
-      ans=addmod(ans,1<<p,m);
+        ans=addmod(ans,1<<p,m);
     p++;
     a>>=1;
   }
