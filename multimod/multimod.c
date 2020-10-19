@@ -1,5 +1,5 @@
 #include <stdint.h>
-
+#include <stdio.h>
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   static uint64_t l[64]={};
   int p=0,i,j;
