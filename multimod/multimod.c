@@ -25,19 +25,16 @@ static inline void init(uint64_t m){
 }
 
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
-  uint64_t l[65]={};
+  uint64_t ans = 0;
   int p=0,i,j;
   while(a>1){
-    if(a&1) l[p++]=1;
-    else l[p++]=0;
+    if(a&1){
+      ans+=(b<<p);
+      p++;
+    }
     a>>=1;
   }
-  l[p]=1;
-  uint64_t ans = 0;
-  for(i=0;i<=p;++i){
-    if(l[i]==0) continue;
-    ans=ans+(b<<i);
-  }
+  ans+=(b<<p);
   init(m);
   ans = my_mod(ans,m);
   return ans;
