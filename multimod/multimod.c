@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-uint64_t data[65]={};
+uint64_t data[70]={};
 int x=0;
 static inline uint64_t my_mod(uint64_t a,uint64_t m){
   while(a>=m){
@@ -18,7 +18,7 @@ static inline uint64_t my_mod(uint64_t a,uint64_t m){
 static inline void init(uint64_t m){
   int i;
   data[0]=m;
-  for(i=1;;i<<=1){
+  for(i=1;;++i){
     if((m<<i) < (m<<(i-1))) break;
     data[++x]=m<<i;
   }
