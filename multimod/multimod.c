@@ -12,9 +12,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t ans = 0;
   for(i=0;i<=p;++i){
     if(l[i]==0) continue;
-    for(j=0;j<b;++j){
-      ans=ans+(1<<i);
-    }
+    ans=ans+(b<<i);
   }
   ans = ans & (m-1);
   return ans;
