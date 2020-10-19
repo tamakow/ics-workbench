@@ -39,6 +39,6 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     ans=ans+(b<<i);
   }
   init(m);
-  ans = ans & (m-1);
+  ans = my_mod(ans,m);
   return ans;
 }
