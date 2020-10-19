@@ -24,7 +24,7 @@ static inline void init(uint64_t m){
   }
 }
 
-static inline addmod(uint64_t a,uint64_t b,uint64_t m){
+static inline uint64_t addmod(uint64_t a,uint64_t b,uint64_t m){
   if(a+b>a&&a+b>b) return my_mod(a+b,m);
   else return addmod(my_mod(a+b+1,m),my_mod(-1ULL,m),m);
 }
