@@ -16,7 +16,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       ans=ans+(1<<i);
     }
   }
-  printf("%llu\n",ans);
+  printf("%lu\n",ans);
   ans = ans & (m-1);
   return ans;
 }
