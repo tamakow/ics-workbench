@@ -1,10 +1,10 @@
 #include <stdint.h>
-#include <stdio.h>
+
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   static uint64_t l[64]={};
   int p=0,i,j;
   while(a>1){
-    if(a<<63) l[p++]=0;
+    if(a&1) l[p++]=0;
     else l[p++]=1;
     a>>=1;
   }
@@ -16,7 +16,6 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       ans=ans+(1<<i);
     }
   }
-  printf("%d\n",(int)ans);
   ans = ans & (m-1);
   return ans;
 }
