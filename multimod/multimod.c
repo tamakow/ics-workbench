@@ -1,12 +1,12 @@
 #include <stdint.h>
 
 uint64_t data[70]={};
-int x=0;
+
 static inline uint64_t my_mod(uint64_t a,uint64_t m){
   while(a>=m){
     int i=0;
-    for(i=0;i<=x;++i){
-      if(data[i]<a) continue;
+    for(i=0;data[i]!=0;++i){
+      if(data[i]<=a) continue;
       if(i!=0)
       a-=data[i-1];
       break;
@@ -20,7 +20,7 @@ static inline void init(uint64_t m){
   data[0]=m;
   for(i=1;;++i){
     if((m<<i) < (m<<(i-1))) break;
-    data[++x]=m<<i;
+    data[i]=(m<<i);
   }
 }
 
