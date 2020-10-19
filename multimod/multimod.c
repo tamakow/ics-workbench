@@ -7,10 +7,12 @@ static inline uint64_t my_mod(uint64_t a,uint64_t m){
     int i=0;
     for(i=0;i<=x;++i){
       if(data[i]<a) continue;
+      if(i!=0)
       a-=data[i-1];
       break;
     }
   }
+  return a; 
 }
 
 static inline void init(uint64_t m){
