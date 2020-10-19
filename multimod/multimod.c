@@ -24,17 +24,23 @@ static inline void init(uint64_t m){
   }
 }
 
+static inline addmod(uint64_t a,uint64_t b,uint64_t m){
+  if(a+b>a&&a+b>b) return my_mod(a+b,m);
+  else return addmod(my_mod(a+b+1,m),my_mod(-1ULL,m),m);
+}
+
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t ans = 0;
   int p=0,i,j;
+  init(m);
   while(a>1){
     if(a&1)
-      ans+=(b<<p);
+      for(i=0;i<b;++i)
+      ans=addmod(ans,1<<p,m);
     p++;
     a>>=1;
   }
-  ans+=(b<<p);
-  init(m);
-  ans = my_mod(ans,m);
+  for(i=0;i<b;++i)
+  ans=addmod(ans,1<<p,m);
   return ans;
 }
