@@ -14,7 +14,7 @@ uint64_t data[70]={};
   }
   return a; 
 }*/
-static inline uint64_t my_mod(uint16_t a,uint64_t m){
+static inline uint64_t my_mod(uint64_t a,uint64_t m){
   return a%m;
 }
 
