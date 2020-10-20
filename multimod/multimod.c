@@ -2,7 +2,7 @@
 #include <stdio.h>
 uint64_t data[70]={};
 
-/*static inline uint64_t my_mod(uint64_t a,uint64_t m){
+static inline uint64_t my_mod(uint64_t a,uint64_t m){
   while(a>=m){
     int i=0;
     for(i=0;data[i]!=0;++i){
@@ -13,9 +13,6 @@ uint64_t data[70]={};
     }
   }
   return a; 
-}*/
-static inline uint64_t my_mod(uint64_t a,uint64_t m){
-  return a%m;
 }
 
 static inline void init(uint64_t m){
