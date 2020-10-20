@@ -33,7 +33,7 @@ static inline uint64_t addmod(uint64_t a,uint64_t b,uint64_t m){
 
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   uint64_t ans = 0;
-  //init(m);
+  init(m);
   while(a){
     if(a&1){
       ans+=b;
