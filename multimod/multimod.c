@@ -31,11 +31,13 @@ static inline uint64_t div(uint64_t a,uint64_t b){
 }
 */
 static inline uint64_t my_mod(uint64_t a,uint64_t m){
-  if(a>=m){
-    int i;
-    for(i=x;i>=0;--i){
-      while(data[i]<=a) a-=data[i];
+  uint64_t i=0;
+  while(a>=m){
+    if(a>=m<<i){
+      a-=m<<i;
+      ++i;
     }
+    else --i;
   }
   return a;
 //  return a-mul(div(a,m),m); 
