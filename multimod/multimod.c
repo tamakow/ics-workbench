@@ -17,7 +17,7 @@ static inline uint64_t mul(uint64_t a,uint64_t b){
 }
 
 static inline uint64_t div(uint64_t a,uint64_t b){
-  int k=0,i=0;
+  uint64_t k=0,i=0;
   while(a>=b){
     if(a>=b<<i){
       k+=1<<i;
