@@ -17,7 +17,7 @@ static inline void init(uint64_t m){
   int i;
   data[0]=m;
   for(i=1;i<64;++i){
-    if((m<<i) <= data[i-1]) break;
+    if((m<<i) < (m<<(i-1))) break;
     data[i]=(m<<i);
   }
 }
