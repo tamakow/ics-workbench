@@ -1,5 +1,5 @@
 #include <stdint.h>
-
+#include <stdio.h>
 uint64_t data[70]={};
 
 /*static inline uint64_t my_mod(uint64_t a,uint64_t m){
@@ -44,6 +44,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     //b=addmod(b,b,m);
     a>>=1;
   }
+  printf("%d\n",(int)ans);
   ans=addmod(ans,0,m);
   return ans;
 }
