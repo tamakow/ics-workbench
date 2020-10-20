@@ -5,17 +5,18 @@ uint64_t data[70]={0};
 static inline uint64_t my_mod(uint64_t a,uint64_t m){
   while(a>=m){
     int i=0;
-    a-=m;
-    /*for(i=63;i>=0;--i){
-      if(data[i]==0) continue;
+    for(i=63;i>=0;--i){
+      if(data[i]==-1) continue;
       while(a>=data[i]) a-=data[i];
-    }*/
+    }
   }
   return a; 
 }
 
 static inline void init(uint64_t m){
   int i;
+  for(i=0;i<=69;++i)
+    data[i]=-1;
   data[0]=m;
   for(i=1;i<64;++i){
     if((m<<i) < (m<<(i-1))) break;
