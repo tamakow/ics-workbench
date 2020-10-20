@@ -3,12 +3,13 @@
 uint64_t data[70]={0};
 
 static inline uint64_t my_mod(uint64_t a,uint64_t m){
-  if(a>=m){
+  while(a>=m){
     int i=0;
-    for(i=63;i>=0;--i){
+    a-=m;
+    /*for(i=63;i>=0;--i){
       if(data[i]==0) continue;
       while(a>=data[i]) a-=data[i];
-    }
+    }*/
   }
   return a; 
 }
