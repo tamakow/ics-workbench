@@ -8,6 +8,7 @@ static inline uint64_t my_mod(uint64_t a,uint64_t m){
     for(i=63;i>=0;--i){
       if(data[i]==-1) continue;
       while(a>=data[i]) a-=data[i];
+      if(a<m) break;
     }
   }
   return a; 
