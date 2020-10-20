@@ -36,13 +36,10 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   init(m);
   while(a){
     if(a&1){
-      ans+=b;
-      //ans=addmod(ans,b,m);
+      ans=addmod(ans,b,m);
     }
-    b+=b;
-    //b=addmod(b,b,m);
+    b=addmod(b,b,m);
     a>>=1;
   }
-  ans=addmod(ans,0,m);
   return ans;
 }
