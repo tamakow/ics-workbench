@@ -4,12 +4,12 @@ uint64_t data[70]={0};
 
 static inline uint64_t my_mod(uint64_t a,uint64_t m){
   if(a>=m){
-    int i,p;
+    int i,p=0;
     for(i=0;data[i]!=-1;++i){
       if(data[i]<=a) continue;
       p=i-1;
     }
-    for(i=p-1;i>=0;--i){
+    for(i=p;i>=0;--i){
       while(data[i]<=a) a-=data[i];
     }
   }
