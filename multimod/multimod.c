@@ -3,13 +3,15 @@
 uint64_t data[70]={};
 
 static inline uint64_t my_mod(uint64_t a,uint64_t m){
-  while(a>=m){
-    int i=0;
+  if(a>=m){
+    int i=0,p=0;
     for(i=0;data[i]!=0;++i){
       if(data[i]<=a) continue;
-      if(i!=0)
-      a-=data[i-1];
+      p=i-1;
       break;
+    }
+    for(i=p;i>=0;--i){
+      while(a>=data[i]) a-=data[i];
     }
   }
   return a; 
@@ -39,6 +41,5 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     b=addmod(b,b,m);
     a>>=1;
   }
-  ans=addmod(ans,0,m);
   return ans;
 }
