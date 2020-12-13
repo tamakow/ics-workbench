@@ -18,7 +18,7 @@ int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
   */
  //先使用 gcc -S 将c代码转换至汇编代码再写内联汇编
   asm("mov %1, -24(%%rbp);"//mov %rdi -24(%rbp) rdi寄存器中存储x 
-      "mov $0, -8(%%rbp);"
+      "movl $0, -8(%%rbp);"
       "jmp L2;"
       "L4: mov -8(%%rbp), %%eax;"//eax 存储 i
       "mov -24(%%rbp), %rdx;" //rdx 存储 x
@@ -34,7 +34,7 @@ int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
       "jle L4;"
       : "+r"(s)
       : "r"(x)
-      : "%rax", "%eax", "%ecx","%rdx","%cl","%rbp"
+      : "%rax", "%eax", "%ecx","%rdx","%cl"
   );
   return s;
 }
