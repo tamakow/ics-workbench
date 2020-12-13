@@ -2,7 +2,11 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {//返回有符号64位加法
-  return a + b;
+  asm("add %1,%0;"
+      : "+r"(a)
+      : "r"(b)
+  );
+  return a;
 }
 
 int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
