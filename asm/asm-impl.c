@@ -1,11 +1,11 @@
 #include "asm.h"
 #include <string.h>
 
-int64_t asm_add(int64_t a, int64_t b) {
+int64_t asm_add(int64_t a, int64_t b) {//返回有符号64位加法
   return a + b;
 }
 
-int asm_popcnt(uint64_t x) {
+int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
   int s = 0;
   for (int i = 0; i < 64; i++) {
     if ((x >> i) & 1) s++;
