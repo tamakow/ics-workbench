@@ -3,7 +3,6 @@
 #include <stdio.h>
 
 int main() {
-  assert(asm_popcnt(0x0123456789abcdefULL) == 32);
   asm_jmp_buf buf;
   int r = asm_setjmp(buf);
   if (r == 0) {
