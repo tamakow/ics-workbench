@@ -21,7 +21,7 @@ int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
       "movl $0, -8(%%rbp);"
       "jmp L2;"
       "L4: mov -8(%%rbp), %%eax;"//eax 存储 i
-      "mov -24(%%rbp), %rdx;" //rdx 存储 x
+      "mov -24(%%rbp), %%rdx;" //rdx 存储 x
       "mov %%eax, %%ecx;"//ecx存储i
       "shr %%cl, %%rdx;" //逻辑右移
       "mov %%rdx, %%rax;" 
