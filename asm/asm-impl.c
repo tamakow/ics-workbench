@@ -17,21 +17,21 @@ int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
   }
   */
  //先使用 gcc -S 将c代码转换至汇编代码再写内联汇编
-  asm("mov %1, -24(%%rbp);"//mov %rdi -24(%rbp) rdi寄存器中存储x 
-      "movl $0, -4(%%rbp);"
-      "jmp L2;"
-      "L4: mov -4(%%rbp), %%eax;"//eax 存储 i
-      "mov -24(%%rbp), %%rdx;" //rdx 存储 x
-      "mov %%eax, %%ecx;"//ecx存储i
-      "shr %%cl, %%rdx;" //逻辑右移
-      "mov %%rdx, %%rax;" 
-      "and $1, %%eax;"
-      "test %%rax, %%rax;"
-      "je L3;"
-      "addl $1, %0;"
-      "L3: addl $1, -4(%%rbp);"
-      "L2: cmpl $63, -4(%%rbp);"
-      "jle L4;"
+  asm("mov %1, -24(%%rbp)\n"//mov %rdi -24(%rbp) rdi寄存器中存储x 
+      "movl $0, -4(%%rbp)\n"
+      "jmp L2\n"
+      "L4: mov -4(%%rbp), %%eax\n"//eax 存储 i
+      "mov -24(%%rbp), %%rdx\n" //rdx 存储 x
+      "mov %%eax, %%ecx\n"//ecx存储i
+      "shr %%cl, %%rdx\n" //逻辑右移
+      "mov %%rdx, %%rax\n" 
+      "and $1, %%eax\n"
+      "test %%rax, %%rax\n"
+      "je L3\n"
+      "addl $1, %0\n"
+      "L3: addl $1, -4(%%rbp)\n"
+      "L2: cmpl $63, -4(%%rbp)\n"
+      "jle L4\n"
       : "+r"(s)
       : "r"(x)
       : "%rax", "%eax", "%ecx","%rdx","%cl"
