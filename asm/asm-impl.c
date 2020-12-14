@@ -56,6 +56,14 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
                  : "0" (n / 4), "g" (n), "1" ((long)dest), "2" ((long)src)
                  : "memory"
                 );
+                
+  /*
+  asm(""
+      :
+      : "r"(dest), "r"(src), "r"(n)
+      :
+  );
+  */
   return dest;
 }
 
