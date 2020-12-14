@@ -67,7 +67,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
       //"mov %0, %%rax;" // rax=dest
       "jmp mem1;"
       "mem2: sub $1, %2;"
-      "movzbl %%rsi, %%edx;"
+      "mov %%rsi, %%rdx;"
       "mov %%dl, %%rdi;"
       "addq $1, %%rdi;"
       "addq $1, %%rsi;"
@@ -77,7 +77,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
       //"pop %%rbp;"
       :
       : "r"(dest), "r"(src), "r"(n)
-      :
+      : "%rax","%rdx","%rdi","%rsi","%dl"
   );
   return dest;
 }
