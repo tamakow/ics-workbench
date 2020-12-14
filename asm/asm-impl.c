@@ -48,7 +48,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   asm("mov %0, %%rdi;"
       "mov %1, %%rsi;"
       "mov %2, %%rcx;"
-      "rep movs byte ptr (%%rsi), byte ptr (%%rdi);"
+      "rep movsb %%rsi, %%rdi;"
       :
       : "r"(dest), "r"(src), "r"(n)
       : "%edi","%esi","%ecx" 
