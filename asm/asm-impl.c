@@ -79,10 +79,9 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
       : "r"(dest), "r"(src), "r"(n)
       : "%rax","%rdx","%rdi","%rsi","%dl"
   );*/
-  asm("mov %%rsp, %%rbp;"
-      "mov %1, -24(%%rbp);"//mov %rdi -24(%rbp) rdi寄存器中存储x 
-      "movl $0, -16(%%rbp);"
-      "mov -24(%%rbp), %0;"
+  asm(
+      "mov %0, %%rdi;"//dest
+      "mov %1, %%rsi;"//src
       :
       : "r"(dest),"r"(src)
       );
