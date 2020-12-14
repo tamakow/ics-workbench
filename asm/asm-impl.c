@@ -11,11 +11,6 @@ int64_t asm_add(int64_t a, int64_t b) {//返回有符号64位加法
 
 int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
   int s = 0;
-  /*
-  for (int i = 0; i < 64; i++) {
-    if ((x >> i) & 1) s++;
-  }
-  */
  //先使用 gcc -S 将c代码转换至汇编代码再写内联汇编
   asm("push %%rbp;"
       "mov %%rsp, %%rbp;"
@@ -45,13 +40,8 @@ int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   //return memcpy(dest, src, n);         
-  asm(//"push %%rbp;"
-      //"mov %%rsp, %%rbp;"
-      "mov %0, %%rdi;"//dest
+  asm("mov %0, %%rdi;"//dest
       "mov %1, %%rsi;"//src
-      //"mov %1, ;"//src
-      //"mov %2, ;"//n
-      //"mov %0, %%rax;" // rax=dest
       "jmp mem1;"
       "mem2: sub $1, %2;"
       "movzbl (%%rsi), %%edx;"
@@ -61,7 +51,6 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
       "mem1: mov %2, %%rax;"
       "test %%rax, %%rax;"
       "jne mem2;"
-      //"pop %%rbp;"
       :
       : "r"(dest), "r"(src), "r"(n)
       : "%rax","%rdx","%rdi","%rsi","%dl"
@@ -71,7 +60,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 
 int asm_setjmp(asm_jmp_buf env) {
   //return setjmp(env);
-  asm(//"mov %%rsp, %%rbp;"
+  asm(
       "mov %0, %%rdi;"
       "mov %%rbx, (%%rdi);"
       "mov %%rbp, %%rax;"
