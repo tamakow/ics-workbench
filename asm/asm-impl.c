@@ -83,10 +83,41 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 
 int asm_setjmp(asm_jmp_buf env) {
-  return setjmp(env);
+  //return setjmp(env);
+  asm("mov %0, %%rdi;"
+      "mov (%%rbp), %%rsi;"
+      "mov %%rbx, (%%rdi);"
+      "mov %%rsi, 8(%%rdi);"
+      "mov %%r12, 16(%%rdi);"
+      "mov %%r13, 24(%%rdi);"
+      "mov %%r14, 32(%%rdi);"
+      "mov %%r15, 40(%%rdi);"
+      "lea 16(%%rsp), %%rcx;"
+      "mov %%rcx, 48(%%rdi);"
+      "mov 8(%%rsp), %%rax;"
+      "mov %%rax, 56(%%rdi);" 
+      :
+      : "m"(env)
+      : "%rax", "%rcx", "%rdi", "%rsi", "memory"
+  );
+  return 0;
 }
 
 void asm_longjmp(asm_jmp_buf env, int val) {
-  longjmp(env, val);
+  //longjmp(env, val);
+  asm("mov %0, %%rdi;"
+      "mov (%%rdi), %%rbx;"
+      "mov 8(%%rdi), %%rbp;"
+      "mov 16(%%rdi), %%r12;"
+      "mov 24(%%rdi), %%r13;"
+      "mov 32(%%rdi), %%r14;"
+      "mov 40(%%rdi), %%r15;"
+      "mov 48(%%rdi), %%rsp;"
+      "mov 56(%%rdi), %rdx;"
+      "jmpq *%%rdx;" 
+      :
+      : "m"(env), "m"(val)
+      :  "%rdi", "memory"
+  );
 }
 ;
