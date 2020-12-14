@@ -44,20 +44,7 @@ int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
 }
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
-  //return memcpy(dest, src, n);
-  /*
-   int d0, d1, d2;
-   asm volatile("rep ; movsl\n\t"
-                 "movl %4,%%ecx\n\t"
-                 //"andl $3,%%ecx;"
-                 //"jz 1f;"
-                 "rep ; movsb;\n\t"
-                 //"1:"
-                 : "=&c" (d0), "=&D" (d1), "=&S" (d2)
-                 : "0" (n >> 4), "g" (n & 3), "1" (dest), "2" (src)
-                 : "memory"
-                );
-    */            
+  //return memcpy(dest, src, n);         
   asm(//"push %%rbp;"
       //"mov %%rsp, %%rbp;"
       "mov %0, %%rdi;"//dest
@@ -84,7 +71,8 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 
 int asm_setjmp(asm_jmp_buf env) {
   //return setjmp(env);
-  asm("mov %0, %%rdi;"
+  asm("mov %%rsp, %%rbp;"
+      "mov %0, %%rdi;"
       "mov %%rbx, (%%rdi);"
       "mov (%%rbp), %%rax;"
       "mov %%rax, 8(%%rdi);"
