@@ -45,10 +45,10 @@ int asm_popcnt(uint64_t x) {//无符号64位整数x二进制表示中1的数量
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   //return memcpy(dest, src, n);
-  asm("mov %0, %%edi;"
-      "mov %1, %%esi;"
-      "mov %2, %%ecx;"
-      "rep movsb ds:[esi], es:[edi];"
+  asm("mov %0, %%rdi;"
+      "mov %1, %%rsi;"
+      "mov %2, %%rcx;"
+      "rep movs byte ptr ds:[esi], byte ptr es:[edi];"
       :
       : "r"(dest), "r"(src), "r"(n)
       : "%edi","%esi","%ecx" 
