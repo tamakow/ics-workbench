@@ -39,7 +39,7 @@ int *sieve(int n){
     if(i%3==0) continue;
     if(i%5==0) continue;
 		if(!is_prime[i]) primes[tot++]=i;
-		for(int j=0;j<tot && i*primes[j]<=n;++j){
+		for(int j=3;j<tot && i*primes[j]<=n;++j){
 			is_prime[i*primes[j]]=true;
 			if(i%primes[j]==0) break;
 		}
