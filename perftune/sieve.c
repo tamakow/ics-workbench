@@ -31,7 +31,8 @@ int *sieve(int n) { //埃氏筛
 int *sieve(int n){
   assert(n+1<N);
   int tot=0;
-	for(int i=2;i<=n;++i){
+  primes[tot++]=2;
+	for(int i=3;i<=n;++i){
     if((i&1)==0) continue;
 		if(!is_prime[i]) primes[tot++]=i;
 		for(int j=0;j<tot && i*primes[j]<=n;++j){
