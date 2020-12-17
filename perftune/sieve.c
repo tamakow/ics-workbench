@@ -32,7 +32,7 @@ int *sieve(int n){
   assert(n+1<N);
   int tot=0;
 	for(int i=2;i<=n;++i){
-    if(i&1==0) continue;
+    if((i&1)==0) continue;
 		if(!is_prime[i]) primes[tot++]=i;
 		for(int j=0;j<tot && i*primes[j]<=n;++j){
 			is_prime[i*primes[j]]=true;
