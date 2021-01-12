@@ -77,12 +77,14 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   for(int i = line_start; i< line_end; ++i){
     cycle_increase(1);
     if(cache[i].valid_bit&&(cache[i].tag == tag)){
+      hit_cnt++;
       cache[i].dirty_bit = true;
       cache[i].data[block_addr] = (cache[i].data[block_addr] & ~wmask) | (data & wmask); 
       return;
     }
   }
   //miss
+  miss_cnt++;
   //得到在主存的块数
   uint32_t block_idx = (addr >> BLOCK_WIDTH) & mask_with_len(25-BLOCK_WIDTH);
   //寻找是否存在没有使用的cache行
@@ -127,4 +129,9 @@ void init_cache(int total_size_width, int associativity_width) {
 }
 
 void display_statistic(void) {
+  printf("cycle number is %lld\n",cycle_cnt);
+  printf("hit number is %lld\n",hit_cnt);
+  printf("miss number is %lld\n",miss_cnt);
+  return;
+
 }
