@@ -6,11 +6,14 @@ void mem_write(uintptr_t block_num, const uint8_t *buf);
 
 static uint64_t cycle_cnt = 0;
 
+static cache_line *cache;
+
 void cycle_increase(int n) { cycle_cnt += n; }
 
 // TODO: implement the following functions
-
+// 使用的是直接映射
 uint32_t cache_read(uintptr_t addr) {
+  
   return 0;
 }
 
