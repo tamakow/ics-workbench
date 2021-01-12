@@ -129,9 +129,9 @@ void init_cache(int total_size_width, int associativity_width) {
 }
 
 void display_statistic(void) {
-  printf("cycle number is %lld\n",cycle_cnt);
-  printf("hit number is %lld\n",hit_cnt);
-  printf("miss number is %lld\n",miss_cnt);
+  printf("cycle number is %ld\n",cycle_cnt);
+  printf("hit number is %ld\n",hit_cnt);
+  printf("miss number is %ld\n",miss_cnt);
   return;
 
 }
