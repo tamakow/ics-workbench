@@ -27,5 +27,4 @@ typedef struct{
 }cache_line;
 
 
-
 #endif
