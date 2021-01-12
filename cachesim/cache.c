@@ -34,7 +34,8 @@ uint32_t cache_read(uintptr_t addr) {
     cycle_increase(1);
     if(cache[i].valid_bit&&(cache[i].tag == tag)){
       hit_cnt++;
-      return cache[i].data[block_addr];
+      uint32_t* ret = (uint32_t*)(cache[i].data + block_addr);
+      return ret;
     }
   }
   //miss
@@ -48,7 +49,8 @@ uint32_t cache_read(uintptr_t addr) {
       mem_read(block_idx, cache[i].data);
       cache[i].valid_bit = true;
       cache[i].tag = tag;
-      return cache[i].data[block_addr];
+      uint32_t* ret = (uint32_t*)(cache[i].data + block_addr);
+      return ret;
     }
   }
   //替换算法
@@ -61,7 +63,8 @@ uint32_t cache_read(uintptr_t addr) {
   mem_read(block_idx,cache[random_line].data);
   cache[random_line].valid_bit = true;
   cache[random_line].tag =tag;
-  return cache[random_line].data[block_addr];
+  uint32_t* ret = (uint32_t*)(cache[random_line].data + block_addr);
+  return ret;
 }
 
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
