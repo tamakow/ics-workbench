@@ -11,6 +11,7 @@ const uint32_t len2datamask [] = { 0x0, 0xff, 0xffff, 0xffffff, 0xffffffff };
 
 uint32_t cpu_read(uintptr_t addr, int len) {
   cycle_increase(1);
+  printf("%d\n",cache_read(addr));
   return (cache_read(addr) >> addr_offset_bit(addr)) & len2datamask[len];
 }
 
