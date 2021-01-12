@@ -35,6 +35,7 @@ uint32_t cache_read(uintptr_t addr) {
     if(cache[i].valid_bit&&(cache[i].tag == tag)){
       hit_cnt++;
       uint32_t* ret = (uint32_t*)(cache[i].data + block_addr);
+      printf("1\n");
       return *ret;
     }
   }
@@ -50,6 +51,7 @@ uint32_t cache_read(uintptr_t addr) {
       cache[i].valid_bit = true;
       cache[i].tag = tag;
       uint32_t* ret = (uint32_t*)(cache[i].data + block_addr);
+      printf("2\n");
       return *ret;
     }
   }
@@ -64,6 +66,7 @@ uint32_t cache_read(uintptr_t addr) {
   cache[random_line].valid_bit = true;
   cache[random_line].tag =tag;
   uint32_t* ret = (uint32_t*)(cache[random_line].data + block_addr);
+  printf("3\n");
   return *ret;
 }
 
