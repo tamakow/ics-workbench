@@ -21,6 +21,7 @@ void cpu_write(uintptr_t addr, int len, uint32_t data) {
 }
 
 uint32_t cpu_uncache_read(uintptr_t addr, int len) {
+  printf("%d\n",mem_uncache_read(addr));
   return (mem_uncache_read(addr) >> addr_offset_bit(addr)) & len2datamask[len];
 }
 
