@@ -22,7 +22,7 @@ void cycle_increase(int n) { cycle_cnt += n; }
 // 使用组相联映射
 uint32_t cache_read(uintptr_t addr) {
   //得到块内地址
-  uint32_t block_addr = addr & mask_with_len(BLOCK_WIDTH) ;
+  uint32_t block_addr = addr & 0x3c;
   //得到cache组号
   uint32_t group_idx = (addr >> BLOCK_WIDTH) & mask_with_len(group_number_width);
   //得到标记
@@ -70,7 +70,7 @@ uint32_t cache_read(uintptr_t addr) {
 
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   //得到块内地址
-  uint32_t block_addr = addr & mask_with_len(BLOCK_WIDTH);
+  uint32_t block_addr = addr & 0x3c;//mask_with_len(BLOCK_WIDTH);
   //得到cache组号
   uint32_t group_idx = (addr >> BLOCK_WIDTH) & mask_with_len(group_number_width);
   //得到标记
