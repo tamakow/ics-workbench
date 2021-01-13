@@ -30,7 +30,7 @@ uint32_t cache_read(uintptr_t addr) {
   //得到对应组的行号范围
   uint32_t line_start = group_idx * exp2(associate_width);
   uint32_t line_end = line_start + exp2(associate_width);
-  for(int i = line_start; i< line_end; ++i){
+  for(uint32_t i = line_start; i< line_end; ++i){
     cycle_increase(1);
     if(cache[i].valid_bit&&(cache[i].tag == tag)){
       hit_cnt++;
@@ -43,7 +43,7 @@ uint32_t cache_read(uintptr_t addr) {
   //得到在主存的块数
   uint32_t block_idx = (addr >> BLOCK_WIDTH) & mask_with_len(25-BLOCK_WIDTH);
   //寻找是否存在没有使用的cache行
-  for(int i = line_start; i< line_end; ++i){
+  for(uint32_t i = line_start; i< line_end; ++i){
     cycle_increase(1);
     if(!cache[i].valid_bit){ 
       mem_read(block_idx, cache[i].data);
@@ -77,7 +77,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   //得到对应组的行号范围
   uint32_t line_start = group_idx * exp2(associate_width);
   uint32_t line_end = line_start + exp2(associate_width);
-  for(int i = line_start; i< line_end; ++i){
+  for(uint32_t i = line_start; i< line_end; ++i){
     cycle_increase(1);
     if(cache[i].valid_bit&&(cache[i].tag == tag)){
       hit_cnt++;
@@ -92,7 +92,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   //得到在主存的块数
   uint32_t block_idx = (addr >> BLOCK_WIDTH) & mask_with_len(25-BLOCK_WIDTH);
   //寻找是否存在没有使用的cache行
-  for(int i = line_start; i< line_end; ++i){
+  for(uint32_t i = line_start; i< line_end; ++i){
     cycle_increase(1);
     if(!cache[i].valid_bit){ 
       mem_read(block_idx, cache[i].data);
