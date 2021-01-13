@@ -56,12 +56,13 @@ uint32_t cache_read(uintptr_t addr) {
   //替换算法
   uint32_t random_line = line_start + rand() % exp2(associate_width);
   //不确定写对了没
-  uint32_t random_line_block_idx = (cache[random_line].tag << group_number_width) + group_idx;
+  uint32_t random_line_block_idx = (cache[random_line].tag << group_number_width) | group_idx;
   if(cache[random_line].dirty_bit){ //cache内容被修改过，需要写回主存
     mem_write(random_line_block_idx, cache[random_line].data);
   }
   mem_read(block_idx,cache[random_line].data);
   cache[random_line].valid_bit = true;
+  cache[random_line].dirty_bit = false;
   cache[random_line].tag =tag;
   uint32_t* ret = (uint32_t*)(cache[random_line].data + block_addr);
   return *ret;
@@ -107,7 +108,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   //替换算法
   uint32_t random_line = line_start + rand() % exp2(associate_width);
   //不确定写对了没
-  uint32_t random_line_block_idx = (cache[random_line].tag << group_number_width) + group_idx;
+  uint32_t random_line_block_idx = (cache[random_line].tag << group_number_width) | group_idx;
   if(cache[random_line].dirty_bit){ //cache内容被修改过，需要写回主存
     mem_write(random_line_block_idx, cache[random_line].data);
   }
