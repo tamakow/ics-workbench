@@ -23,7 +23,7 @@ typedef struct{
     bool dirty_bit;
     bool valid_bit;
     uint32_t tag;
-    uint8_t data[BLOCK_SIZE];
+    uint32_t data[BLOCK_SIZE];
 }cache_line;
 
 
