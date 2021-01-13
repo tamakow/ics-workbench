@@ -11,8 +11,6 @@ const uint32_t len2datamask [] = { 0x0, 0xff, 0xffff, 0xffffff, 0xffffffff };
 
 uint32_t cpu_read(uintptr_t addr, int len) {
   cycle_increase(1);
-  printf("cache is %x\n",cache_read(addr));
-  printf("address = %lx\n",addr);
   return (cache_read(addr) >> addr_offset_bit(addr)) & len2datamask[len];
 }
 
@@ -22,7 +20,6 @@ void cpu_write(uintptr_t addr, int len, uint32_t data) {
 }
 
 uint32_t cpu_uncache_read(uintptr_t addr, int len) {
-  printf("uncache is %x\n",mem_uncache_read(addr));
   return (mem_uncache_read(addr) >> addr_offset_bit(addr)) & len2datamask[len];
 }
 
