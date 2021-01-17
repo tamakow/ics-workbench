@@ -4,6 +4,13 @@
 void mem_read(uintptr_t block_num, uint8_t *buf);
 void mem_write(uintptr_t block_num, const uint8_t *buf);
 
+typedef struct{
+    bool dirty_bit;
+    bool valid_bit;
+    uint32_t tag;
+    uint8_t data[BLOCK_SIZE];
+}cache_line;
+
 static uint64_t cycle_cnt = 0;
 static uint64_t hit_cnt = 0;
 static uint64_t miss_cnt = 0;
