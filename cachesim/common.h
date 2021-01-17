@@ -19,12 +19,7 @@ typedef uint8_t bool;
 
 void cycle_increase(int n);
 
-typedef struct{
-    bool dirty_bit;
-    bool valid_bit;
-    uint32_t tag;
-    uint8_t data[BLOCK_SIZE];
-}cache_line;
+
 
 
 #endif
